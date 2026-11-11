@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEW 시그니처 라떼 & ICE 커피 트렌드</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Gamja Flower (손글씨 font), Gaegu (아기자기한 폰트) & Gowun Dodum -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gamja+Flower&family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        creamBg: '#FFFDF9',
+                        warmBrown: '#4A2C11',
+                        softBrown: '#7A5230',
+                        accentYellow: '#F3B738',
+                        cloudColor: '#6B4423',
+                        cardBg: '#FFFAF2',
+                        borderCream: '#EADBC8',
+                    },
+                    fontFamily: {
+                        hand: ['"Gamja Flower"', 'cursive'],
+                        cute: ['"Gaegu"', 'cursive'],
+                        body: ['"Gowun Dodum"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #EFECE6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Gowun Dodum', sans-serif;
+            color: #4A2C11;
+        }
+
+        /* Fixed 600px Height Container with exact overflow management */
+        .promo-card {
+            width: 100%;
+            max-width: 440px;
+            height: 600px;
+            background-color: #FFFDF9;
+            box-shadow: 0 16px 36px rgba(74, 44, 17, 0.18);
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            border: 3px solid #EADBC8;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px 18px;
+            box-sizing: border-box;
+        }
+
+        /* 손그림 구름 뱃지 (Brown Doodle Cloud Badge) */
+        .cloud-badge {
+            background-color: #6B4423;
+            border-radius: 25px;
+            position: relative;
+            display: inline-block;
+            padding: 3px 24px;
+            box-shadow: 2px 3px 6px rgba(0,0,0,0.15);
+        }
+        .cloud-badge::before, .cloud-badge::after {
+            content: '';
+            position: absolute;
+            background-color: #6B4423;
+            border-radius: 50%;
+        }
+        .cloud-badge::before {
+            width: 24px;
+            height: 24px;
+            top: -8px;
+            left: 10px;
+        }
+        .cloud-badge::after {
+            width: 20px;
+            height: 20px;
+            top: -6px;
+            right: 12px;
+        }
+
+        /* Sparkle & Doodle Animations */
+        @keyframes sparkleAnim {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+            50% { transform: scale(1.3) rotate(15deg); opacity: 1; }
+        }
+        .doodle-star {
+            animation: sparkleAnim 2.5s infinite ease-in-out;
+            color: #F3B738;
+        }
+
+        /* Custom Scrollbar inside Tab Panels */
+        .tab-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .tab-scroll::-webkit-scrollbar-thumb {
+            background-color: #D6C7B2;
+            border-radius: 4px;
+        }
+
+        /* Interactive Cup Fluid transition */
+        #coffee-fluid {
+            transition: all 0.4s ease;
+        }
+        #ice-cubes {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 600px Fixed Height Container -->
+    <div class="promo-card select-none">
+        
+        <!-- Animated Hand-Drawn Doodle Stars & Sparks -->
+        <div class="absolute top-3 left-4 doodle-star text-xl" style="animation-delay: 0s;">✦</div>
+        <div class="absolute top-7 right-6 doodle-star text-base" style="animation-delay: 0.5s;">★</div>
+        <div class="absolute top-28 left-3 doodle-star text-sm" style="animation-delay: 1.2s;">✦</div>
+        <div class="absolute bottom-20 left-4 doodle-star text-sm" style="animation-delay: 0.8s;">★</div>
+        <div class="absolute bottom-24 right-5 doodle-star text-lg" style="animation-delay: 1.6s;">✦</div>
+
+        <!-- HEADER SECTION -->
+        <div class="text-center z-10 pt-1">
+            <!-- Brown Cloud Badge "NEW" -->
+            <div class="inline-block mb-1">
+                <div class="cloud-badge">
+                    <span class="font-hand text-white text-2xl font-bold tracking-widest relative z-10">NEW</span>
+                </div>
+            </div>
+
+            <!-- Hand-written Main Title -->
+            <h1 class="font-hand text-4xl text-warmBrown font-bold tracking-tight my-0 leading-tight">
+                시그니처 라떼
+            </h1>
+
+            <!-- Interactive Tab Bar -->
+            <div class="flex justify-center gap-1.5 mt-2">
+                <button id="btn-tab1" onclick="switchTab('tab1')" class="px-3 py-1 text-[11px] rounded-full font-bold transition-all bg-warmBrown text-white shadow-sm flex items-center gap-1">
+                    ☕ <span>시그니처 라떼</span>
+                </button>
+                <button id="btn-tab2" onclick="switchTab('tab2')" class="px-3 py-1 text-[11px] rounded-full font-bold transition-all bg-white text-softBrown border border-amber-200 hover:bg-amber-50 flex items-center gap-1">
+                    🌍 <span>유럽 ICE 열풍</span>
+                </button>
+                <button id="btn-tab3" onclick="switchTab('tab3')" class="px-3 py-1 text-[11px] rounded-full font-bold transition-all bg-white text-softBrown border border-amber-200 hover:bg-amber-50 flex items-center gap-1">
+                    ❄️ <span>한국은 사계절 ICE</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= TAB 1: SIGNATURE LATTE (Image Concept Match) ================= -->
+        <div id="tab1-content" class="flex-1 flex flex-col justify-between items-center z-10 my-1 transition-all">
+            
+            <!-- Hand-drawn Iced Coffee SVG Illustration -->
+            <div class="relative w-full flex justify-center items-center py-1">
+                <!-- Golden Swirl Orbit Arc -->
+                <svg class="absolute w-60 h-32 text-accentYellow opacity-80" viewBox="0 0 200 100" fill="none" stroke="currentColor" stroke-width="2.8" stroke-dasharray="6 4">
+                    <path d="M 12,80 Q 100,8 188,70" />
+                </svg>
+
+                <div class="relative z-10 cursor-pointer transform hover:scale-105 transition-transform duration-300" onclick="cycleIce()">
+                    <svg width="115" height="160" viewBox="0 0 120 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Glass Base & Outline -->
+                        <path d="M25 25 L35 155 C35 160, 85 160, 85 155 L95 25 Z" fill="#FFFDF8" stroke="#4A2C11" stroke-width="3.5" stroke-linejoin="round"/>
+                        
+                        <!-- Dynamic Liquid Layers -->
+                        <g id="coffee-fluid">
+                            <path d="M34 150 L33 120 C45 124 75 124 87 120 L86 150 C86 154 34 154 34 150 Z" fill="#98582C"/>
+                            <path d="M33 120 L30 68 C50 72 70 72 90 68 L87 120 C75 124 45 124 33 120 Z" fill="#DFB78E"/>
+                        </g>
+
+                        <!-- Whipped Cream Foam Base -->
+                        <path id="svg-foam" d="M30 68 C 28 48, 92 48, 90 68 Z" fill="#FFF2DF"/>
+
+                        <!-- Interactive Ice Cubes Layer -->
+                        <g id="ice-cubes" opacity="0.95">
+                            <rect x="38" y="72" width="17" height="17" rx="3" fill="#EBF4F8" stroke="#4A2C11" stroke-width="1.5" transform="rotate(12 38 72)"/>
+                            <rect x="62" y="86" width="19" height="19" rx="3" fill="#EBF4F8" stroke="#4A2C11" stroke-width="1.5" transform="rotate(-10 62 86)"/>
+                            <rect x="45" y="110" width="16" height="16" rx="3" fill="#EBF4F8" stroke="#4A2C11" stroke-width="1.5" transform="rotate(20 45 110)"/>
+                        </g>
+
+                        <!-- Cream Swirl Top & Caramel Drizzle -->
+                        <path d="M42 50 Q 60 22 78 50" fill="none" stroke="#FFFDF8" stroke-width="7" stroke-linecap="round"/>
+                        <path id="caramel-drizzle" d="M44 46 Q 60 20 76 46" fill="none" stroke="#D48C46" stroke-width="4" stroke-linecap="round"/>
+                        <path d="M48 36 Q 60 16 72 36" fill="none" stroke="#7A5230" stroke-width="3" stroke-linecap="round"/>
+                        
+                        <!-- Highlight Shine -->
+                        <path d="M31 35 L33 140" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+                    </svg>
+
+                    <!-- Interactive Ice Tag -->
+                    <span id="ice-badge" class="absolute -bottom-1 -right-1 bg-accentYellow text-warmBrown text-[10px] px-2 py-0.5 rounded-full font-bold shadow-sm border border-warmBrown">
+                        🧊 얼음 100%
+                    </span>
+                </div>
+            </div>
+
+            <!-- Image Concept Description -->
+            <div class="px-2 text-center">
+                <h2 class="font-hand text-xl text-softBrown font-bold mb-0.5">Signature Collection</h2>
+                <p class="text-[11.5px] leading-relaxed text-warmBrown font-medium break-keep">
+                    엄선된 원두의 깊고 진한 에스프레소 위에, 매장에서 직접 수제로 휘핑한 달콤하고 쫀득한 크림을 듬뿍 올렸습니다. 입안 가득 퍼지는 진한 풍미와 크림의 부드러움이 일상의 피로를 사르르 녹여줄 거예요.
+                </p>
+            </div>
+
+            <!-- Customizer Options Bar -->
+            <div class="w-full bg-white/90 rounded-xl p-1.5 flex justify-between items-center border border-amber-200 text-[11px]">
+                <button id="ice-btn-1" onclick="setOption('ice', 100)" class="flex-1 py-1 font-bold rounded-lg text-warmBrown bg-amber-100 transition-all">
+                    100% 얼죽아 ❄️
+                </button>
+                <div class="w-[1px] h-4 bg-amber-200"></div>
+                <button id="ice-btn-2" onclick="setOption('ice', 70)" class="flex-1 py-1 font-bold text-softBrown hover:bg-amber-50 transition-all">
+                    70% 시원하게 🥤
+                </button>
+                <div class="w-[1px] h-4 bg-amber-200"></div>
+                <button id="ice-btn-3" onclick="setOption('ice', 0)" class="flex-1 py-1 font-bold text-softBrown hover:bg-amber-50 transition-all">
+                    따뜻하게 ☕
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= TAB 2: EUROPE ICE COFFEE TREND (Text 01~03) ================= -->
+        <div id="tab2-content" class="hidden flex-1 flex-col justify-between z-10 my-1 tab-scroll overflow-y-auto pr-1">
+            <!-- Card 01: Europe Sales Increase -->
+            <div class="bg-white/95 p-3 rounded-xl border border-amber-200 shadow-sm">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="font-hand text-lg font-bold text-warmBrown">01 | 유럽서 판매 급증</span>
+                    <span class="text-[9px] bg-amber-100 text-softBrown px-1.5 py-0.5 rounded font-bold">출처: 파이어(Fyre)</span>
+                </div>
+                <p class="text-[11px] text-warmBrown mb-2 leading-tight">
+                    에스프레소만 마시던 유럽에서 따뜻한 커피 대신 아이스커피 판매가 빠르게 늘고 있습니다. <span class="text-[10px] text-softBrown">(2~8월 증가율)</span>
+                </p>
+                
+                <!-- Progress Bars -->
+                <div class="space-y-1.5 text-[11px] font-bold">
+                    <div class="flex items-center justify-between">
+                        <span class="w-16">🇳🇱 네덜란드</span>
+                        <div class="flex-1 mx-2 bg-amber-50 h-2.5 rounded-full overflow-hidden border border-amber-200">
+                            <div class="bg-accentYellow h-full rounded-full transition-all duration-700" style="width: 88%;"></div>
+                        </div>
+                        <span class="text-softBrown text-xs">44%</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="w-16">🇬🇧 영국</span>
+                        <div class="flex-1 mx-2 bg-amber-50 h-2.5 rounded-full overflow-hidden border border-amber-200">
+                            <div class="bg-softBrown h-full rounded-full transition-all duration-700" style="width: 78%;"></div>
+                        </div>
+                        <span class="text-softBrown text-xs">39%</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="w-16">🇫🇷 프랑스</span>
+                        <div class="flex-1 mx-2 bg-amber-50 h-2.5 rounded-full overflow-hidden border border-amber-200">
+                            <div class="bg-cloudColor opacity-80 h-full rounded-full transition-all duration-700" style="width: 40%;"></div>
+                        </div>
+                        <span class="text-softBrown text-xs">20%</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="w-16">🇩🇪 독일</span>
+                        <div class="flex-1 mx-2 bg-amber-50 h-2.5 rounded-full overflow-hidden border border-amber-200">
+                            <div class="bg-cloudColor opacity-60 h-full rounded-full transition-all duration-700" style="width: 38%;"></div>
+                        </div>
+                        <span class="text-softBrown text-xs">19%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 02 & 03: NIQ Report & Drivers -->
+            <div class="bg-amber-50/80 p-2.5 rounded-xl border border-amber-200 mt-1.5">
+                <div class="flex justify-between items-baseline mb-1">
+                    <span class="font-hand text-base font-bold text-warmBrown">02 | 틈새에서 대중으로</span>
+                    <span class="text-[9px] text-softBrown">NIQ 2027 음료보고서</span>
+                </div>
+                <p class="text-[11px] font-bold text-softBrown mb-1.5">
+                    영국인 3명 중 1명(32%) "아이스커피 즐긴다"<br>
+                    <span class="text-[10px] text-warmBrown font-normal">젊은 층을 넘어 55세 이상 구매도 증가! 시럽·과일향·단백질까지 메뉴 다양화</span>
+                </p>
+
+                <div class="pt-1.5 border-t border-amber-200/70 text-[10.5px]">
+                    <strong class="text-warmBrown font-hand text-sm block mb-0.5">03 | 왜 갑자기?</strong>
+                    <div class="grid grid-cols-3 gap-1 text-center text-[10px] font-bold text-warmBrown">
+                        <div class="bg-white p-1 rounded border border-amber-200">① 취향대로 조합</div>
+                        <div class="bg-white p-1 rounded border border-amber-200">② SNS 비주얼</div>
+                        <div class="bg-white p-1 rounded border border-amber-200">③ 더워진 유럽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= TAB 3: KOREA'S 4-SEASONS ICE (Text 04~05) ================= -->
+        <div id="tab3-content" class="hidden flex-1 flex-col justify-between z-10 my-1">
+            <div class="bg-white/95 p-3 rounded-xl border border-amber-200 shadow-sm">
+                <div class="flex justify-between items-center mb-1">
+                    <span class="font-hand text-lg font-bold text-warmBrown">04 | 한국은 이미 사계절 ICE</span>
+                    <span class="text-[9px] bg-amber-100 text-softBrown px-1.5 py-0.5 rounded font-bold">메가MGC커피 4억건 분석</span>
+                </div>
+                <p class="text-[11px] text-warmBrown/90 mb-2">
+                    유럽에선 새 트렌드지만, 한국에선 계절을 타지 않는 일상입니다.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-2 text-center my-1">
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-200">
+                        <span class="block text-[10px] text-softBrown font-bold">한겨울에도</span>
+                        <span class="text-2xl font-bold text-warmBrown font-cute">60%</span>
+                        <span class="block text-[9.5px] text-warmBrown">커피 10잔 중 6잔 아이스</span>
+                    </div>
+                    <div class="bg-amber-50 p-2 rounded-lg border border-amber-200">
+                        <span class="block text-[10px] text-softBrown font-bold">대서(한여름)에는</span>
+                        <span class="text-2xl font-bold text-red-500 font-cute">97%</span>
+                        <span class="block text-[9.5px] text-warmBrown">아이스커피 비중 97%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz / Quote Card -->
+            <div class="bg-amber-100/70 p-2.5 rounded-xl border border-amber-200 text-center">
+                <span class="font-hand text-2xl font-bold text-warmBrown block mb-0.5">05 | 커피 공식이 바뀐다</span>
+                <p class="text-[11px] leading-relaxed text-warmBrown font-medium break-keep mb-2">
+                    <strong class="text-softBrown">'얼죽아'</strong> (얼어 죽어도 아이스 아메리카노).<br>한국에서 익숙해진 소비 방식이 유럽의 문화 변화와 맞닿고 있습니다.
+                </p>
+
+                <!-- Interactive Eol-Juk-Ah Test Button -->
+                <button onclick="runIceTest()" class="bg-white hover:bg-amber-50 border border-warmBrown text-warmBrown text-[11px] font-bold px-3 py-1 rounded-full shadow-sm transition-all">
+                    ❄️ 나의 '얼죽아' 지수 확인하기
+                </button>
+            </div>
+        </div>
+
+        <!-- FOOTER BRANDING & ACTION BUTTON -->
+        <div class="z-10 pt-2 border-t border-amber-200/80 flex items-center justify-between">
+            <div>
+                <span class="block text-[9px] tracking-widest uppercase font-bold text-softBrown">COFFEE SHOP</span>
+                <span class="text-xs text-warmBrown font-bold">시그니처 라떼 <span class="text-accentYellow">5,500원</span></span>
+            </div>
+
+            <button onclick="openModal()" class="bg-warmBrown hover:bg-softBrown text-white font-hand text-lg px-4 py-1.5 rounded-full shadow-md transition-all transform active:scale-95 flex items-center gap-1.5">
+                <span>1,000원 쿠폰</span>
+                <i class="fa-solid fa-ticket text-xs text-accentYellow"></i>
+            </button>
+        </div>
+
+        <!-- MODAL POPUP -->
+        <div id="modal" class="hidden absolute inset-0 bg-black/40 backdrop-blur-sm z-30 flex justify-center items-center p-4">
+            <div class="bg-creamBg border-2 border-warmBrown rounded-2xl p-4 text-center max-w-xs w-full shadow-2xl relative">
+                <button onclick="closeModal()" class="absolute top-2 right-3 text-warmBrown font-bold text-base hover:text-red-500">✕</button>
+                
+                <div class="cloud-badge mb-1">
+                    <span class="font-hand text-white text-base font-bold">EVENT</span>
+                </div>
+                
+                <h3 class="font-hand text-2xl font-bold text-warmBrown mb-1">시그니처 라떼 쿠폰</h3>
+                <p class="text-xs text-softBrown mb-3 leading-relaxed break-keep">
+                    유럽도 빠져든 깊고 진한 수제 크림 라떼를<br>할인된 가격으로 만나보세요!
+                </p>
+
+                <div class="bg-amber-50 border border-dashed border-warmBrown p-2 rounded-lg mb-3">
+                    <span class="text-[10px] text-softBrown block">쿠폰 코드</span>
+                    <span class="font-mono font-bold text-warmBrown text-xs tracking-wider">ICE-LATTE-2026</span>
+                </div>
+
+                <button onclick="copyCoupon()" class="w-full bg-warmBrown text-white font-bold py-2 text-xs rounded-xl hover:bg-softBrown transition-colors">
+                    쿠폰 코드 복사하기
+                </button>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="hidden absolute bottom-14 left-1/2 transform -translate-x-1/2 bg-warmBrown text-white text-[11px] px-3 py-1.5 rounded-full shadow-lg z-40 transition-opacity">
+            ✨ 쿠폰 코드가 복사되었습니다!
+        </div>
+
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Tab Switch Logic
+        function switchTab(tabId) {
+            const tabs = ['tab1', 'tab2', 'tab3'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`btn-${t}`);
+                const content = document.getElementById(`${t}-content`);
+                
+                if (t === tabId) {
+                    btn.className = "px-3 py-1 text-[11px] rounded-full font-bold transition-all bg-warmBrown text-white shadow-sm flex items-center gap-1";
+                    content.classList.remove('hidden');
+                    content.classList.add('flex');
+                } else {
+                    btn.className = "px-3 py-1 text-[11px] rounded-full font-bold transition-all bg-white text-softBrown border border-amber-200 hover:bg-amber-50 flex items-center gap-1";
+                    content.classList.add('hidden');
+                    content.classList.remove('flex');
+                }
+            });
+        }
+
+        // Ice Level Customizer
+        let currentIce = 100;
+
+        function setOption(type, val) {
+            const iceCubes = document.getElementById('ice-cubes');
+            const iceBadge = document.getElementById('ice-badge');
+            const svgFoam = document.getElementById('svg-foam');
+
+            currentIce = val;
+
+            // Reset button styles
+            [1, 2, 3].forEach(i => {
+                document.getElementById(`ice-btn-${i}`).className = "flex-1 py-1 font-bold text-softBrown hover:bg-amber-50 transition-all";
+            });
+
+            if (val === 100) {
+                document.getElementById('ice-btn-1').className = "flex-1 py-1 font-bold rounded-lg text-warmBrown bg-amber-100 transition-all";
+                iceCubes.style.opacity = "0.95";
+                iceBadge.innerText = "🧊 얼음 100%";
+                svgFoam.setAttribute('fill', '#FFF2DF');
+            } else if (val === 70) {
+                document.getElementById('ice-btn-2').className = "flex-1 py-1 font-bold rounded-lg text-warmBrown bg-amber-100 transition-all";
+                iceCubes.style.opacity = "0.4";
+                iceBadge.innerText = "🥤 얼음 70%";
+                svgFoam.setAttribute('fill', '#FFF2DF');
+            } else {
+                document.getElementById('ice-btn-3').className = "flex-1 py-1 font-bold rounded-lg text-warmBrown bg-amber-100 transition-all";
+                iceCubes.style.opacity = "0";
+                iceBadge.innerText = "☕ 따뜻하게";
+                svgFoam.setAttribute('fill', '#E6B88A');
+            }
+        }
+
+        function cycleIce() {
+            if (currentIce === 100) setOption('ice', 70);
+            else if (currentIce === 70) setOption('ice', 0);
+            else setOption('ice', 100);
+        }
+
+        // Test Quiz Feature
+        function runIceTest() {
+            const scores = ["당신은 진정한 '얼죽아' 마스터! ❄️ (지수 99%)", "필요할 때 시원함을 찾는 실속파! 🥤 (지수 75%)", "따뜻한 커피의 감성을 사랑하는 클래식파! ☕ (지수 40%)"];
+            const randomScore = scores[Math.floor(Math.random() * scores.length)];
+            alert(randomScore);
+        }
+
+        // Modal Controls
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        function copyCoupon() {
+            closeModal();
+            const toast = document.getElementById('toast');
+            toast.classList.remove('hidden');
+
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = 'ICE-LATTE-2026';
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 2200);
+        }
+    </script>
+</body>
+</html>
